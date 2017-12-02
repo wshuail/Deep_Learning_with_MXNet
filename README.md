@@ -7,5 +7,7 @@ generally just follow [Deep Learning with Gluon](http://zh.gluon.ai/index.html)
 1. linear regression
 2. logistic regression
 3. perceptron
+4. regularization
+5. dropout
 
 more will be updated later.
