@@ -10,4 +10,10 @@ generally just follow [Deep Learning with Gluon](http://zh.gluon.ai/index.html)
 4. regularization
 5. dropout
 
+## 2. Basic Gluon
+1. build network
+2. initialize parameters
+3. serialization
+4. customerized layer
+
 more will be updated later.
