@@ -6,7 +6,7 @@ from mxnet import gluon
 from mxnet.gluon import nn
 from utils import load_data_fashion_mnist
 from utils import train
-
+from utils import get_ctx
 
 net = nn.Sequential()
 with net.name_scope():
@@ -21,7 +21,7 @@ with net.name_scope():
     )
 
 
-ctx = mx.cpu()
+ctx = get_ctx()
 net.initialize(ctx=ctx)
 
 

@@ -5,6 +5,7 @@ from mxnet import gluon
 from mxnet.gluon import nn
 from utils import load_data_fashion_mnist
 from utils import train
+from utils import get_ctx
 
 
 net = nn.Sequential()
@@ -22,7 +23,8 @@ with net.name_scope():
 
     net.add(nn.Dense(128, activation='relu'))
     net.add(nn.Dense(10))
-net.initialize()
+ctx = get_ctx()
+net.initialize(ctx=ctx)
 
 
 batch_size = 256

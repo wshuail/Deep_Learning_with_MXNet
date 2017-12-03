@@ -7,13 +7,13 @@ from mxnet import gluon
 from mxnet import autograd
 
 
-# def get_ctx():
-#     try:
-#         ctx = mx.gpu()
-#         _ = nd.zeros((1, ), ctx=ctx)
-#     except:
-#         ctx = mx.cpu()
-#     return ctx
+def get_ctx():
+    try:
+        ctx = mx.gpu()
+        _ = nd.zeros((1, ), ctx=ctx)
+    except:
+        ctx = mx.cpu()
+    return ctx
 
 
 def accuracy(output, label):
@@ -36,7 +36,13 @@ def transform(data, label, resize=None):
     return data.astype('float32')/255, label.astype('float32')
 
 
-def load_data_fashion_mnist(batch_size):
+def transform_resize(data, label, resize=224):
+    data = mx.image.imresize(data, resize, resize)
+    data = mx.nd.transpose(data, (2, 0, 1))
+    return data.astype('float32')/255, label.astype('float32')
+
+
+def load_data_fashion_mnist(batch_size, transform=transform):
     # Create Data
     data_root = '../data/fashion_mnist'
     mnist_train = gluon.data.vision.FashionMNIST(root=data_root, train=True, transform=transform)

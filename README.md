@@ -16,4 +16,9 @@ generally just follow [Deep Learning with Gluon](http://zh.gluon.ai/index.html)
 3. serialization
 4. customerized layer
 
+## 3. CNN
+1. basic CNN
+2. normalization
+3. AlexNet
+
 more will be updated later.

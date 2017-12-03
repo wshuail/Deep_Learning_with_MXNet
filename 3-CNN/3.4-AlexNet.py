@@ -6,24 +6,8 @@ from mxnet import init
 from mxnet import gluon
 from mxnet.gluon import nn
 from utils import train
-
-
-def transform(data, label, resize=224):
-    data = mx.image.imresize(data, resize, resize)
-    data = mx.nd.transpose(data, (2, 0, 1))
-    return data.astype('float32')/255, label.astype('float32')
-
-
-def load_data_fashion_mnist(batch_size):
-    # Create Data
-    data_root = '../data/fashion_mnist'
-    mnist_train = gluon.data.vision.FashionMNIST(root=data_root, train=True, transform=transform)
-    mnist_test = gluon.data.vision.FashionMNIST(root=data_root, train=False, transform=transform)
-    # Read Data
-    train_data = gluon.data.DataLoader(dataset=mnist_train, batch_size=batch_size, shuffle=True)
-    test_data = gluon.data.DataLoader(dataset=mnist_test, batch_size=batch_size, shuffle=False)
-    return train_data, test_data
-
+from utils import load_data_fashion_mnist, transform_resize
+from utils import get_ctx
 
 
 net = nn.Sequential()
@@ -53,10 +37,10 @@ with net.name_scope():
 
 
 batch_size = 64
-train_data, test_data = load_data_fashion_mnist(batch_size=batch_size)
+train_data, test_data = load_data_fashion_mnist(batch_size=batch_size, transform=transform_resize)
 
 
-ctx = mx.gpu()
+ctx = get_ctx()
 net.initialize(ctx=ctx, init=init.Xavier())
 loss_op = gluon.loss.SoftmaxCrossEntropyLoss()
 trainer = gluon.Trainer(params=net.collect_params(), optimizer='sgd',

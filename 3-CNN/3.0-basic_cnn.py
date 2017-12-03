@@ -7,6 +7,7 @@ from mxnet import gluon
 from mxnet import autograd
 from utils import load_data_fashion_mnist
 from utils import accuracy, evaluate_accuracy
+from utils import get_ctx
 
 
 # Convolutional Layer
@@ -65,7 +66,7 @@ batch_size = 256
 train_data, test_data = load_data_fashion_mnist(batch_size)
 
 
-ctx = mx.cpu()
+ctx = get_ctx()
 
 
 weight_scale = 0.01

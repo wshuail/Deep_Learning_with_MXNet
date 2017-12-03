@@ -8,6 +8,7 @@ from mxnet import gluon
 from utils import load_data_fashion_mnist
 from utils import accuracy, evaluate_accuracy
 from utils import SGD
+from utils import get_ctx
 
 
 # Simple Normalization
@@ -58,7 +59,7 @@ def batch_norm(x, gamma, beta, is_training, moving_mean, moving_variance,
     return gamma.reshape(mean.shape)*x_hat + beta.reshape(mean.shape)
 
 
-ctx = mx.cpu()
+ctx = get_ctx()
 
 
 weight_scale = 0.01
