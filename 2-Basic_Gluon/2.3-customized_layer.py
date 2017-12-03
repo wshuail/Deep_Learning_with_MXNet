@@ -1,11 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import mxnet as mx
 from mxnet import nd
 from mxnet import gluon
 from mxnet.gluon import nn
-from mxnet import init
 
 
 # Simple Layer
