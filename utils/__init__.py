@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import mxnet as mx
 from mxnet import ndarray as nd
 from mxnet import gluon
 from mxnet import autograd
@@ -28,9 +29,10 @@ def evaluate_accuracy(data_iterator, net):
     return acc/len(data_iterator)
 
 
-def transform(data, label):
-    # print('data: ', data.shape)
-    data = data.reshape((1, 28, 28))
+def transform(data, label, resize=None):
+    if resize is not None:
+        data = mx.image.imresize(data, resize, resize)
+    data = mx.nd.transpose(data, (2, 0, 1))
     return data.astype('float32')/255, label.astype('float32')
 
 
@@ -43,6 +45,11 @@ def load_data_fashion_mnist(batch_size):
     train_data = gluon.data.DataLoader(dataset=mnist_train, batch_size=batch_size, shuffle=True)
     test_data = gluon.data.DataLoader(dataset=mnist_test, batch_size=batch_size, shuffle=False)
     return train_data, test_data
+
+
+def SGD(params, lr):
+    for param in params:
+        param[:] = param - lr * param.grad
 
 
 def train(train_data, test_data, net, loss_op, trainer, batch_size, epochs):
