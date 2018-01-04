@@ -26,4 +26,7 @@ generally just follow [Deep Learning with Gluon](http://zh.gluon.ai/index.html)
 8. ResNet
 9. DenseNet
 
+## 4.Optimization
+1. SGD
+
 more will be updated later.
