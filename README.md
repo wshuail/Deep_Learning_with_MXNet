@@ -19,6 +19,11 @@ generally just follow [Deep Learning with Gluon](http://zh.gluon.ai/index.html)
 ## 3. CNN
 1. basic CNN
 2. normalization
-3. AlexNet
+4. AlexNet
+5. VGG
+6. NiN (network in network)
+7. GoogleNet
+8. ResNet
+9. DenseNet
 
 more will be updated later.
